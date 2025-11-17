@@ -2,13 +2,9 @@ package net.kaupenjoe.mccourse;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
-import net.kaupenjoe.mccourse.block.ModBlocks;
-import net.kaupenjoe.mccourse.enchantment.ModEnchantments;
-import net.kaupenjoe.mccourse.item.ModCreativeModeTabs;
+import net.kaupenjoe.mccourse.entity.ModEntities;
 import net.kaupenjoe.mccourse.item.ModItems;
-import net.kaupenjoe.mccourse.network.ModMessages;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,6 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import software.bernie.geckolib.GeckoLib;
 import org.slf4j.Logger;
 
 import java.util.HashMap;
@@ -38,33 +35,39 @@ public static int checklevel = 1;
     public MCCourseMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModCreativeModeTabs.register(modEventBus);
-
+//        ModCreativeModeTabs.register(modEventBus);
+//
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-
-        ModEnchantments.register(modEventBus);
-
+//        ModParticleTypes.register(modEventBus);
+//        ModSounds.register(modEventBus);
+        ModEntities.register(modEventBus);
+//
+//        ModEnchantments.register(modEventBus);
+//
+//        // 濞夈劌鍞介柊宥囩枂
+//        WeaponEffectConfig.register();
 
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
+
+        GeckoLib.initialize();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        ModMessages.register();
+       // ModMessages.register();
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.ALEXANDRITE);
-            event.accept(ModItems.RAW_ALEXANDRITE);
+        if(event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(ModItems.WHEEL_CHAIR_SPAWN_EGG);
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.ALEXANDRITE_BLOCK);
-            event.accept(ModBlocks.RAW_ALEXANDRITE_BLOCK);
+            event.accept(ModBlocks.ALEXANDRITE_STAIRS);
+            event.accept(ModBlocks.ALEXANDRITE_SLAB);
         }
     }
 
@@ -91,3 +94,6 @@ public static int checklevel = 1;
         }
     }
 }
+
+
+

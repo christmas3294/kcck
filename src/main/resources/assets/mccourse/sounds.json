@@ -1,0 +1,18 @@
+{
+  "wheel_chair_engine": {
+    "sounds": [
+      {
+        "name": "mccourse:wheel_chair/wheel_chair_engine",
+        "stream": false
+      }
+    ]
+  },
+  "wheel_chair_jump": {
+    "sounds": [
+      {
+        "name": "mccourse:wheel_chair/wheel_chair_jump",
+        "stream": false
+      }
+    ]
+  }
+}
