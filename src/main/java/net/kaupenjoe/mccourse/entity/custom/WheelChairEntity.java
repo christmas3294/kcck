@@ -16,14 +16,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class WheelChairEntity extends MobileVehicleEntity implements GeoEntity {
+public class WheelChairEntity extends MobileVehicleEntity {
     private static final float MAX_HEALTH = 50f;
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private float leftWheelRot;
     private float rightWheelRot;
     private float prevLeftWheelRot;
@@ -156,15 +151,6 @@ public class WheelChairEntity extends MobileVehicleEntity implements GeoEntity {
         tag.putFloat("LeftWheel", leftWheelRot);
         tag.putFloat("RightWheel", rightWheelRot);
     }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
     public float getVisualYaw(float partialTick) {
         return Mth.lerp(partialTick, prevVisualYaw, visualYaw);
     }
@@ -173,3 +159,4 @@ public class WheelChairEntity extends MobileVehicleEntity implements GeoEntity {
         return getDeltaMovement().horizontalDistanceSqr() > 1.0E-4;
     }
 }
+

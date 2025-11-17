@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import software.bernie.geckolib.GeckoLib;
 import org.slf4j.Logger;
 
 import java.util.HashMap;
@@ -45,15 +44,12 @@ public static int checklevel = 1;
 //
 //        ModEnchantments.register(modEventBus);
 //
-//        // 濞夈劌鍞介柊宥囩枂
-//        WeaponEffectConfig.register();
 
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
 
-        GeckoLib.initialize();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -94,6 +90,8 @@ public static int checklevel = 1;
         }
     }
 }
+
+
 
 
 
